@@ -57,10 +57,19 @@ export default function Navbar() {
 
   return (
     <>
-      {/* Announcement bar */}
-      <div className="fixed top-0 left-0 right-0 z-50 h-8 flex items-center justify-center"
-        style={{ background: "linear-gradient(90deg, #0A1929 0%, #0d2a1e 50%, #0A1929 100%)" }}>
-        <p className="text-xs text-white/50 tracking-widest">
+      {/* Announcement bar - compact on mobile, full on desktop */}
+      <div
+        className="fixed top-0 left-0 right-0 z-50 flex items-center justify-center px-3 py-2 min-h-[2.25rem] sm:min-h-0 sm:h-8 sm:py-0 sm:px-4"
+        style={{ background: "linear-gradient(90deg, #0A1929 0%, #0d2a1e 50%, #0A1929 100%)" }}
+      >
+        {/* Mobile: short single line */}
+        <p className="sm:hidden text-[11px] text-white/60 text-center font-medium tracking-wide">
+          <span className="text-teal font-semibold">Oracle Cloud HCM & Payroll</span>
+          <span className="mx-1.5 text-white/30">·</span>
+          <span>Outcome-Led.</span>
+        </p>
+        {/* Desktop: full tagline */}
+        <p className="hidden sm:block text-xs text-white/50 tracking-widest">
           <span className="text-teal font-semibold">Oracle Cloud HCM & Payroll Specialists</span>
           <span className="mx-3 text-white/20">·</span>
           Outcome-Led. Governance-First. Always Accountable.
@@ -68,13 +77,13 @@ export default function Navbar() {
       </div>
 
       <header
-        className="fixed top-8 left-0 right-0 z-40 transition-all duration-300"
+        className="fixed top-[3.25rem] left-0 right-0 z-40 transition-all duration-300 sm:top-8"
       >
         <div className={cn(
           "transition-all duration-500 rounded-2xl mx-4",
           scrolled
             ? "bg-[#0A1929]/85 backdrop-blur-xl border border-white/10 shadow-[0_8px_32px_rgba(0,0,0,0.3)] mt-2"
-            : "bg-transparent border-transparent mt-4"
+            : "bg-transparent border-transparent mt-1"
         )}>
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="flex items-center justify-between h-16">

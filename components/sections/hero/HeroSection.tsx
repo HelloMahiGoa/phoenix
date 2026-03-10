@@ -444,7 +444,7 @@ export default function HeroSection() {
   }, []);
 
   return (
-    <section className="relative min-h-screen flex items-center overflow-hidden" style={{ paddingTop: "calc(32px + 64px)" }}>
+    <section className="relative min-h-screen flex items-center overflow-x-hidden" style={{ paddingTop: "calc(32px + 4px + 64px)" }}>
       <AuroraBackground />
       
       {/* Floating geometric elements */}
@@ -523,7 +523,7 @@ export default function HeroSection() {
       </div>
 
       <div className="relative w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 lg:py-24">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 items-start">
 
           {/* ── LEFT: Main content (8 columns) ── */}
           <motion.div variants={orchestratedStagger} initial="hidden" animate="show" className="lg:col-span-7 space-y-8">
@@ -750,7 +750,7 @@ export default function HeroSection() {
             initial={{ opacity: 0, x: 60 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.9, delay: 0.6, ease: [0.22, 1, 0.36, 1] }}
-            className="lg:col-span-5 relative flex items-center justify-center mt-12 lg:mt-0"
+            className="lg:col-span-5 relative flex items-center justify-center mt-12 lg:mt-0 lg:-mt-36"
           >
             <div className="relative w-full max-w-md">
               {/* Background glow */}
