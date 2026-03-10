@@ -92,17 +92,25 @@ function AbstractGraphic() {
           transition={{ duration: 2, repeat: Infinity, ease: "easeOut" }}
         />
         
-        {/* Inner geometric structure */}
-        <motion.path 
-          d="M200 140 L250 230 L150 230 Z" 
-          fill="none" 
-          stroke="rgba(255,255,255,0.9)" 
-          strokeWidth="2.5"
-          filter="url(#glow)"
-          animate={{ rotateY: [0, 180, 360], rotateZ: [0, 90, 180, 270, 360] }}
-          transition={{ duration: 12, repeat: Infinity, ease: "linear" }}
+        {/* Cloud motion - classic puffy cloud shape */}
+        <motion.g
           style={{ transformOrigin: "200px 200px" }}
-        />
+          animate={{
+            y: [0, -10, 0],
+            x: [0, 6, 0],
+            scale: [1, 1.03, 1],
+          }}
+          transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
+        >
+          {/* Puffy cloud: overlapping circles (recognizable cloud silhouette) */}
+          <circle cx="200" cy="182" r="32" fill="rgba(255,255,255,0.92)" stroke="rgba(255,255,255,0.6)" strokeWidth="1.5" filter="url(#glow)" />
+          <circle cx="165" cy="198" r="26" fill="rgba(255,255,255,0.92)" stroke="rgba(255,255,255,0.6)" strokeWidth="1.5" filter="url(#glow)" />
+          <circle cx="235" cy="198" r="26" fill="rgba(255,255,255,0.92)" stroke="rgba(255,255,255,0.6)" strokeWidth="1.5" filter="url(#glow)" />
+          <circle cx="188" cy="218" r="24" fill="rgba(255,255,255,0.92)" stroke="rgba(255,255,255,0.6)" strokeWidth="1.5" filter="url(#glow)" />
+          <circle cx="212" cy="218" r="24" fill="rgba(255,255,255,0.92)" stroke="rgba(255,255,255,0.6)" strokeWidth="1.5" filter="url(#glow)" />
+          {/* Soft teal tint so it fits the theme */}
+          <circle cx="200" cy="200" r="48" fill="url(#grad1)" fillOpacity="0.18" style={{ mixBlendMode: "overlay" }} />
+        </motion.g>
         
         <circle cx="200" cy="200" r="80" fill="none" stroke="rgba(255,255,255,0.1)" strokeWidth="1" />
       </svg>
