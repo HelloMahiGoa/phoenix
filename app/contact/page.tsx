@@ -16,8 +16,8 @@ export default function ContactPage() {
     <>
       <MarketingHero
         eyebrow="Get in Touch"
-        title="Let’s Talk"
-        subtitle="Tell us about your Oracle Cloud program. We’ll respond within 1 business day."
+        title="Let's Talk"
+        subtitle="Tell us about your Oracle Cloud program. We'll respond within 1 business day."
       />
 
       <section className="py-24 bg-[#020617]">

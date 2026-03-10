@@ -4,7 +4,7 @@ import { CheckCircle, ArrowRight, Layers, Cpu, Database, Headphones } from "luci
 import Container from "@/components/layout/Container";
 import SectionHeading from "@/components/shared/SectionHeading";
 import AnimatedSection from "@/components/shared/AnimatedSection";
-import { FLIGHT_PHASES, METHODOLOGY_COMPONENTS } from "@/lib/constants";
+import { FLIGHT_PHASES } from "@/lib/constants";
 import { Button } from "@/components/ui/button";
 import MarketingHero from "@/components/layout/MarketingHero";
 

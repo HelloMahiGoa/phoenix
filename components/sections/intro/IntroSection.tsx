@@ -55,11 +55,11 @@ function AbstractGraphic() {
           {/* Inner ring */}
           <circle cx="200" cy="200" r="95" fill="none" stroke="url(#grad1)" strokeWidth="1" strokeDasharray="5 5" />
           
-          {/* Nodes */}
+          {/* Nodes - round coords for SSR/client hydration parity */}
           {[0, 1, 2, 3, 4, 5].map((i) => {
             const angle = (i * 60 * Math.PI) / 180;
-            const cx = 200 + 160 * Math.cos(angle);
-            const cy = 200 + 160 * Math.sin(angle);
+            const cx = Math.round((200 + 160 * Math.cos(angle)) * 100) / 100;
+            const cy = Math.round((200 + 160 * Math.sin(angle)) * 100) / 100;
             return (
               <g key={i}>
                 <motion.circle 

@@ -162,7 +162,7 @@ export default function WhoWeArePage() {
                   Pragmatic recommendations
                 </h3>
                 <p className="text-sm text-white/70 leading-relaxed flex-1">
-                  We share options with pros and cons rather than one “perfect” answer. Our guidance balances design purity with what is realistic for your timelines, teams, and constraints.
+                  We share options with pros and cons rather than one "perfect" answer. Our guidance balances design purity with what is realistic for your timelines, teams, and constraints.
                 </p>
               </div>
             </AnimatedSection>

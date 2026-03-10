@@ -236,6 +236,32 @@ function SystemDiagram() {
   );
 }
 
+/* Seeded RNG for deterministic SSR/client parity (avoids hydration mismatch) */
+function createSeededRng(seed: number) {
+  return function next() {
+    seed = (seed * 1103515245 + 12345) & 0x7fffffff;
+    return seed / 0x7fffffff;
+  };
+}
+
+/* Precomputed particle config so server and client render the same HTML */
+const AURORA_PARTICLES = (() => {
+  const out: Array<{ left: number; top: number; color: string; x: number; y: number; duration: number; delay: number }> = [];
+  for (let i = 0; i < 30; i++) {
+    const rng = createSeededRng(42 + i);
+    out.push({
+      left: rng() * 100,
+      top: rng() * 100,
+      color: i % 3 === 0 ? "#00A89C" : i % 3 === 1 ? "#3B82F6" : "#8B5CF6",
+      x: rng() * 100 - 50,
+      y: rng() * 100 - 50,
+      duration: 3 + rng() * 4,
+      delay: rng() * 5,
+    });
+  }
+  return out;
+})();
+
 /* ─── Enhanced Aurora background with particles ─── */
 function AuroraBackground() {
   return (
@@ -253,27 +279,27 @@ function AuroraBackground() {
         transition={{ duration: 12, repeat: Infinity, ease: "easeInOut" }}
       />
 
-      {/* Particle system */}
+      {/* Particle system - deterministic positions for hydration safety */}
       <div className="absolute inset-0">
-        {[...Array(30)].map((_, i) => (
+        {AURORA_PARTICLES.map((p, i) => (
           <motion.div
             key={i}
             className="absolute w-1 h-1 rounded-full"
             style={{
-              left: `${Math.random() * 100}%`,
-              top: `${Math.random() * 100}%`,
-              background: `radial-gradient(circle, ${i % 3 === 0 ? '#00A89C' : i % 3 === 1 ? '#3B82F6' : '#8B5CF6'} 0%, transparent 70%)`,
+              left: `${p.left}%`,
+              top: `${p.top}%`,
+              backgroundImage: `radial-gradient(circle, ${p.color} 0%, transparent 70%)`,
             }}
             animate={{
-              x: [0, Math.random() * 100 - 50, 0],
-              y: [0, Math.random() * 100 - 50, 0],
+              x: [0, p.x, 0],
+              y: [0, p.y, 0],
               opacity: [0, 0.8, 0],
               scale: [0, 1, 0],
             }}
             transition={{
-              duration: 3 + Math.random() * 4,
+              duration: p.duration,
               repeat: Infinity,
-              delay: Math.random() * 5,
+              delay: p.delay,
               ease: "easeInOut"
             }}
           />
